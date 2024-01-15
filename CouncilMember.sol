@@ -131,7 +131,7 @@ contract CouncilMember is
         _withdrawAll(rewardRecipient, tokenId);
         // Transfer the token (representing the council membership) from one address to another
         //@audit-info should check if 'to' is not an existing holder
-         require(IERC721(COUNCIL_NFT_ADDRESS).balanceOf(to) == 0, 'user already a member');
+         require(IERC721(COUNCIL_NFT_ADDRESS).balanceOf(to) == 0, 'user already a member');//++++++++++++++
         _transfer(from, to, tokenId);
     }
 
@@ -179,7 +179,7 @@ contract CouncilMember is
             _retrieve();
         }
         //@audit Missing check so the if newMember already has an nft
-        require(IERC721(COUNCIL_NFT_ADDRESS).balanceOf(newMember) == 0, 'user already a member');
+        require(IERC721(COUNCIL_NFT_ADDRESS).balanceOf(newMember) == 0, 'user already a member');//++++++++++++++++
         balances.push(0);
         _mint(newMember, totalSupply());
     }
