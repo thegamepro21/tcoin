@@ -90,7 +90,7 @@ contract TelcoinDistributor is Ownable2Step, Pausable {
         uint256[] memory amounts
     ) external onlyCouncilMember whenNotPaused {
         // Pushing the proposed transaction to the array
-        require(totalWithdrawl == sumOfAmount(amounts), "totalWithdrawal should be equal to sum of amount");
+        require(totalWithdrawl == sumOfAmount(amounts), "totalWithdrawal should be equal to sum of amount");//++++++++++++++++++++
         proposedTransactions.push(
             ProposedTransaction({
                 totalWithdrawl: totalWithdrawl,
@@ -191,7 +191,7 @@ contract TelcoinDistributor is Ownable2Step, Pausable {
         // stores inital balance
         uint256 initialBalance = TELCOIN.balanceOf(address(this));
         //transfers amounts
-        //@audit accounts memver cant recieve tokens when withdrawal > amount.
+        //@audit accounts member cant recieve tokens when withdrawal > amount.
         TELCOIN.safeTransferFrom(owner(), address(this), totalWithdrawl);
         for (uint i = 0; i < destinations.length; i++) {
             TELCOIN.safeTransfer(destinations[i], amounts[i]);
@@ -257,7 +257,7 @@ contract TelcoinDistributor is Ownable2Step, Pausable {
     }
 
 
-    function sumOfAmount(uint[] memory amount) private pure returns(uint256) {
+    function sumOfAmount(uint[] memory amount) private pure returns(uint256) {//++++++++++++++
         uint sum;
         for(uint i =0; i < amount.length; i++){
             sum += amount[i];
